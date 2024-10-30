@@ -336,7 +336,7 @@ flash_boot() {
           fi;
           # legacy SAR kernel string skip_initramfs -> want_initramfs
           magiskboot hexpatch kernel 736B69705F696E697472616D6673 77616E745F696E697472616D6673;
-          if [ "$(file_getprop $AKHOME/anykernel.sh do.modules)" == 1 ] && [ "$(file_getprop $AKHOME/anykernel.sh do.systemless)" == 1 ]; then
+          if [ "$(file_getprop $AKHOME/props do.modules)" == 1 ] && [ "$(file_getprop $AKHOME/props do.systemless)" == 1 ]; then
             strings kernel 2>/dev/null | grep -E -m1 'Linux version.*#' > $AKHOME/vertmp;
           fi;
           if [ "$comp" ]; then
@@ -352,7 +352,7 @@ flash_boot() {
           for fdt in dtb extra kernel_dtb recovery_dtbo; do
             [ -f $fdt ] && magiskboot dtb $fdt patch; # remove dtb verity/avb
           done;
-        elif [ -d /data/data/me.weishu.kernelsu ] && [ "$(file_getprop $AKHOME/anykernel.sh do.modules)" == 1 ] && [ "$(file_getprop $AKHOME/anykernel.sh do.systemless)" == 1 ]; then
+        elif [ -d /data/data/me.weishu.kernelsu ] && [ "$(file_getprop $AKHOME/props do.modules)" == 1 ] && [ "$(file_getprop $AKHOME/props do.systemless)" == 1 ]; then
           ui_print " " "KernelSU detected! Setting up for kernel helper module...";
           comp=$(magiskboot decompress kernel 2>&1 | grep -vE 'raw|zimage' | sed -n 's;.*\[\(.*\)\];\1;p');
           (magiskboot split $kernel || magiskboot decompress $kernel kernel) 2>/dev/null;
