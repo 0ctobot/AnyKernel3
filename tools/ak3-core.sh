@@ -3,14 +3,6 @@
 
 [ "$OUTFD" ] || OUTFD=$1;
 
-# set up working directory variables
-[ "$AKHOME" ] || AKHOME=$PWD;
-BOOTIMG=$AKHOME/boot.img;
-BIN=$AKHOME/tools;
-PATCH=$AKHOME/patch;
-RAMDISK=$AKHOME/ramdisk;
-SPLITIMG=$AKHOME/split_img;
-
 ### output/testing functions:
 # ui_print "<text>" [...]
 ui_print() {
